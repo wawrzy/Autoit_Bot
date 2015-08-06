@@ -5,8 +5,6 @@
 	Template AutoIt script.
 #ce ----------------------------------------------------------------------------
 
-; Script Start - Add your code below here
-
 #include <MsgBoxConstants.au3>
 #include <AutoItConstants.au3>
 #include <GUIConstantsEx.au3>
@@ -114,7 +112,7 @@ Func Connection()
 		MouseClick($MOUSE_CLICK_LEFT, 653, 423, 1)
 		Sleep(10000)
 		MouseClick($MOUSE_CLICK_LEFT, 645, 635, 1)
-		Sleep($iTime_Wait_Action0)
+		Sleep($iTime_Wait_Action)
 
 EndFunc   ;==>Connection
 
@@ -152,8 +150,8 @@ Func	Food()
 
 		Next
 
-			MouseClick($MOUSE_CLICK_LEFT, 888, 324, 2)
-			Sleep($iTime_Wait_Action)
+		MouseClick($MOUSE_CLICK_LEFT, 888, 324, 2)
+		Sleep($iTime_Wait_Action)
 
 EndFunc
 
