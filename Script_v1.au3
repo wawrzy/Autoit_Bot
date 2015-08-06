@@ -1,6 +1,6 @@
 #cs ----------------------------------------------------------------------------
  AutoIt Version: 3.3.14.1
- Author:         myName
+ Author:         wawrzy_j
  Script Function:
 	Template AutoIt script.
 #ce ----------------------------------------------------------------------------
@@ -13,39 +13,72 @@
 
 ; GUI Init
 
-#cs
+;#cs----------------
 
 GUICreate("Bot_V1", 400, 400)
-; GUICtrlCreateInput("", 424, 232, 145, 21)
+
+Global $sName_Account = GUICtrlCreateInput("", 50, 50, 145, 21)
+Global $sPassword = GUICtrlCreateInput("", 100, 100, 145, 21)
+Global $sPseudo = GUICtrlCreateInput("", 150, 150, 145, 21)
+
+Global $btnExecute = GUICtrlCreateButton("EXECUTE", 350, 336, 40, 40)
+
 GUISetState(@SW_SHOW)
 
 
-Sleep 2000
-Exit 1
+; Sleep 20000
 
-#ce
+;#ce----------------
 
 ; End GUI Inir
 
 ; Init Variables
 
-Global $iTime_Wait_Action = 2000 , $iTime_Wait_Execute = 13200000
-Global $sPseudo = "Rasta-Molotov"
-Global $sName_Account = "", $sPassword = ""
+Global $iTime_Wait_Action = 2000 , $iTime_Wait_Execute = 13200000 ; 230 minutes
+;Global $sPseudo = "Rasta-Molotov"
+;Global $sName_Account = "", $sPassword = ""
 Global $iNumberPet = 40
 
 ; End Init Variables
 
-While 1 > 0
 
-		Connection()
-		Inventory()  ;Ouvre inventaire et go equipement
-		Food() ;Donne la bouffe
-		CloseAutoit()
-		Sleep($iTime_Wait_Execute)
+;=========MAIN LOOP============
+
+While 1
+
+	$nMsg = GUIGetMsg()
+
+	Switch $nMsg
+
+		Case $btnExecute
+				HotKeySet("{ESC}", "close")
+				While 1 > 0
+
+					Connection()
+					Inventory()  ;Ouvre inventaire et go equipement
+					Food() ;Donne la bouffe
+					CloseAutoit()
+					Sleep($iTime_Wait_Execute)
+
+				WEnd
+
+	EndSwitch
 
 WEnd
 
+;=========END MAIN LOOP========
+
+Func close()
+
+		If WinActivate($sPseudo)	Then
+			WinClose($sPseudo)
+
+		If WinActivate("Dofus")	Then
+			WinClose("Dofus")
+
+		Exit
+
+EndFunc	;==>close
 
 Func Connection()
 
@@ -108,7 +141,7 @@ EndFunc	  ;==>Inventory
 Func	Food()
 		WinActivate($sPseudo)
 
-		For $i = 0 To 40 Step 1
+		For $i = 0 To $iNumberPet Step 1
 
 			MouseClick($MOUSE_CLICK_LEFT, 1058, 517, 2)
 			Sleep($iTime_Wait_Action)
