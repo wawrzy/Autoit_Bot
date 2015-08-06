@@ -31,7 +31,7 @@ Exit 1
 
 Global $iTime_Wait_Action = 2000 , $iTime_Wait_Execute = 13200000
 Global $sPseudo = "Rasta-Molotov"
-Global $sName_Account = "trois-pote", $sPassword = "tageule1"
+Global $sName_Account = "", $sPassword = ""
 Global $iNumberPet = 40
 
 ; End Init Variables
